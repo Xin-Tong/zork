@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<map>
+  <room>
+    <name>Entrance</name>
+    <description>You find yourself in a dark room. There's a locked door to the north. You see a chest and a bowl of water. There's a bat hanging on the ceiling asleep. Look around and see if you can figure out how to get out.</description>
+    <container>lock</container>
+    <container>chest</container>
+    <container>bowl</container>
+    <creature>bat</creature>
+    <trigger>
+      <command>n</command>
+      <type>permanent</type>
+      <condition>
+        <object>lock</object>
+        <status>locked</status>
+      </condition>
+      <print>lock needs a key...</print>
+    </trigger>
+    <border>
+      <direction>north</direction>
+      <name>MainHall</name>
+    </border>
+  </room>
+  <room>
+    <type>exit</type>
+    <name>MainHall</name>
+    <description>You found the exit!</description>
+    <border>
+      <name>Entrance</name>
+      <direction>south</direction>
+    </border>
+  </room>
+  <item>
+    <name>flashlight</name>
+    <writing>turn on for bright light. Warning!  Keep light away from bats!</writing>
+    <status>off</status>
+    <turnon>
+      <print>bright beams lights up the room</print>
+      <action>Update flashlight to shining</action>
+    </turnon>
+  </item>
+  <item>
+    <name>key</name>
+    <status>dirty</status>
+    <writing>Needed for exit</writing>
+  </item>
+  <container>
+    <name>chest</name>
+    <item>flashlight</item>
+  </container>
+  <container>
+    <name>lock</name>
+    <status>locked</status>
+    <accept>key</accept>
+    <trigger>
+      <condition>
+        <has>yes</has>
+        <object>key</object>
+        <owner>lock</owner>
+        <status>clean</status>
+      </condition>
+      <print>The lock drops off and the door opens</print>
+      <action>Update lock to unlocked</action>
+    </trigger>
+    <trigger>
+      <type>permanent</type>
+      <command>put key in lock</command>
+      <condition>
+        <object>key</object>
+        <status>dirty</status>
+      </condition>
+      <print>key doesn't fit because it's too dirty</print>
+      <print>maybe you need to take it out and wash it in some water</print>
+    </trigger>
+  </container>
+  <container>
+    <name>bowl</name>
+    <description>filled with water, maybe you can wash something in it</description>
+    <accept>key</accept>
+    <trigger>
+      <command>put key in bowl</command>
+      <print>key is cleaned in the water</print>
+      <action>Update key to clean</action>
+    </trigger>
+  </container>
+  <creature>
+    <name>bat</name>
+    <status>asleep</status>
+    <vulnerability>flashlight</vulnerability>
+    <attack>
+      <condition>
+        <object>bat</object>
+	<status>awake</status>
+      </condition>
+      <print>Blinded by the light, the bat drops the key on the floor and went to hide in a corner.</print>
+      <action>Add key to Entrance</action>
+      <action>Delete bat</action>
+    </attack>
+    <trigger>
+      <type>single</type>
+      <condition>
+        <object>flashlight</object>
+	<status>shining</status>
+      </condition>
+      <print>The bat is awake now! It opens its wings and you see it's holding a key!</print>
+      <action>Update bat to awake</action>
+    </trigger>
+  </creature>
+</map>

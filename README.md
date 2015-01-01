@@ -8,3 +8,7 @@ Zork is one of the earliest interactive fiction computer games, with roots drawn
 I wrote this from scratch mimicking ZORK.
 
 It has a lot of fun!
+
+
+XML file -- the given map
+

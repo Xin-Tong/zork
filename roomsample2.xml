@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<map>
+  <room>
+    <name>Entrance</name>
+    <description>You find yourself at the mouth of a cave and decide that in spite of common sense and any sense of self preservation that you're going to go exploring north into it.  It's a little dark, but luckily there are some torches on the wall.</description>
+    <item>shovel</item>
+    <container>closet</container>
+    <border>
+      <direction>north</direction>
+      <name>room4</name>
+    </border>
+    <border>
+      <direction>south</direction>
+      <name>room5</name>
+    </border>
+    <item>axe</item>
+  </room>
+  <room>
+    <name>room5</name>
+    <description>SECRET ROOM</description>
+    <border>
+      <direction>east</direction>
+      <name>Entrance</name>
+    </border>
+  </room>
+  <room>
+    <name>room1</name>
+    <description>A huge cavern... might kinda surround you with a locked door to the north, a chest in the center, and a very dark corner...</description>
+    <border>
+      <direction>south</direction>
+      <name>room4</name>
+    </border>
+    <border>
+      <direction>north</direction>
+      <name>Exit</name>
+    </border>
+    <border>
+      <direction>east</direction>
+      <name>room2</name>
+    </border>
+    <creature>dragon</creature>
+  </room>
+  <room>
+    <name>room2</name>
+    <description>A huge cavern... might kinda surround you, a chest in the center, and a dark corner...</description>
+    <border>
+      <direction>west</direction>
+      <name>room1</name>
+    </border>
+    <border>
+      <direction>south</direction>
+      <name>room3</name>
+    </border>
+  </room>
+  <room>
+    <name>room3</name>
+    <description>A huge cavern surrounds you with a locked door to the north and a very dark corner...</description>
+    <border>
+      <direction>north</direction>
+      <name>room2</name>
+    </border>
+    <type>exit</type>
+    <border>
+      <direction>west</direction>
+      <name>room4</name>
+    </border>
+    <creature>giant</creature>
+  </room>
+  <room>
+    <name>room4</name>
+    <description>A huge cavern, a chest in the center, and a very dark corner...</description>
+    <border>
+      <direction>east</direction>
+      <name>room3</name>
+    </border>
+    <border>
+      <direction>north</direction>
+      <name>room1</name>
+    </border>
+    <border>
+      <direction>south</direction>
+      <name>Entrance</name>
+    </border>
+  </room>
+  <room>
+    <type>exit</type>
+    <name>Exit</name>
+    <container>bottle</container>
+    <description>You found the exit!</description>
+    <border>
+      <name>room4</name>
+      <direction>south</direction> 
+    </border>
+  </room>
+  <item>
+    <writing>THIS IS A SHOVEL</writing>
+    <name>shovel</name>
+      <turnon>
+        <print>The shovel GLOWS! And you drop it...</print>
+        <action>drop shovel</action>
+      </turnon>
+  </item>
+  <item>
+    <writing>THIS IS AN ORDINARY AXE</writing>
+    <name>axe</name>
+  </item>
+  <item>
+    <name>sword</name>
+  </item>
+  <item>
+    <name>note</name>
+    <writing>You found the exit :-). Victory! </writing>
+  </item>
+  <container>
+    <name>closet</name>
+    <item>sword</item>
+  </container>
+  <container>
+    <name>bottle</name>
+    <item>note</item>
+  </container>
+  <creature>
+    <name>giant</name>
+    <direction>n</direction>
+    <status>alive</status>
+    <vulnerability>sword</vulnerability>
+    <vulnerability>axe</vulnerability>
+    <attack>
+      <action>Game Over</action>
+    </attack>
+  </creature>
+  <creature>
+    <name>dragon</name>
+    <direction>n</direction>
+    <status>alive</status>
+    <vulnerability>sword</vulnerability>
+    <vulnerability>axe</vulnerability>
+    <attack>
+      <action>Add giant to Main</action>
+      <action>s</action>
+      <print>Giant scares you away</print>
+      <action>Delete dragon</action>
+    </attack>
+  </creature>
+</map>
+
